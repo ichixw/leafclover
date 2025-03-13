@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Leaf Clover</title>
+
+    <style>
+        .shadow-nav {
+            box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Toggle styles */
+        .toggle-container {
+            position: fixed;
+            bottom: 80px;
+            /* Adjust this value to set toggle position relative to header */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            /* Make sure it's above the history list */
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            background-color: #F5FFD9;
+            border-radius: 6px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .toggle-option {
+            width: 100%;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #F5FFD9;
+        }
+
+        .active {
+            background-color: #C0E84E;
+            color: black;
+            box-shadow: 0 0px 8px 4px rgba(0, 0, 0, 0.25);
+            /* Active toggle color */
+        }
+
+        .toggle-border {
+            position: absolute;
+            inset: 0;
+            border: 2px solid #6BA829;
+            border-radius: 6px;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        /* Style for the history list */
+        .history-row {
+            display: flex;
+            padding: 10px 16px;
+            border-bottom: 1px solid #6BA829;
+            font-size: 12px;
+            align-items: center;
+        }
+
+        .history-row .icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .history-row img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .history-row h1,
+        .history-row span {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto">
+    <div
+        class="relative w-full max-w-[480px] md:max-w-[400px] mx-auto h-[70px] flex items-center justify-center bg-primaryGreen z-10">
+
+        <a href="./landing-page.html" class="absolute left-8 h-5 w-5">
+            <img src="../assets/images/icon/left-arrow.svg" alt="logo">
+        </a>
+
+        <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold" id="riwayat-title">
+            Riwayat Sampah
+        </h1>
+    </div>
+
+    <h1 class="text-black text-sm py-2 px-4 rounded-full font-montserrat font-semibold mt-8 mb-2 ml-4">
+        Riwayat Penyumbanganmu
+    </h1>
+
+    <div
+        class="my-0 max-w-[480px] md:max-w-[400px] mx-8 px-8 py-6 font-montserrat bg-[#F5FFD9] border-2 border-[#6BA829] rounded-lg flex justify-between items-center">
+        <div class="flex items-center space-x-1 ml-2">
+            <img src="../assets/images/icon/poin-riwayat.svg" alt="points-icon" class="h-6 w-6">
+            <span class="font-bold text-[12px] text-black">15</span>
+            <span class="text-[10px] text-black">Poin</span>
+        </div>
+
+        <div class="self-stretch border-l-2 border-[#6BA829] -my-6"></div>
+
+        <div class="flex items-center space-x-1 mr-2">
+            <img src="../assets/images/icon/pohon-riwayat.svg" alt="tree-icon" class="h-6 w-6">
+            <span class="font-bold text-[12px] text-black">2</span>
+            <span class="text-[10px] text-black">Pohon</span>
+        </div>
+    </div>
+
+    <div class="toggle-container">
+        <div class="toggle-switch font-montserrat text-sm font-bold relative">
+            <div id="toggle-sampah" class="toggle-option active relative z-10 py-3 px-12">Sampah</div>
+            <div id="toggle-pohon" class="toggle-option relative z-10 py-3 px-12">Pohon</div>
+            <div class="toggle-border absolute inset-0 border-2 border-[#6BA829] rounded-lg z-20 pointer-events-none">
+            </div>
+        </div>
+    </div>
+
+    <div id="history-list">
+        <div
+            class="flex justify-between mx-8 mt-8 border-[#6BA829] border text-black font-semibold text-[10px] px-4 py-2">
+            <h1>No.</h1>
+            <h1>Keterangan</h1>
+            <h1>Waktu</h1>
+        </div>
+
+        <!-- riwayat bibit -->
+        <div id="sampah-history">
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">1</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">2</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">3</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">4</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">5</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">6</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">7</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">8</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">9</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">10</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">11</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">12</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">13</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">14</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">15</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">16</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">17</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">18</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">19</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2 mb-52">
+                <h1 class="col-span-1 font-bold text-base">20</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi sampah</p>
+                        <p class="ml-4 text-[10px] font-semibold">Botol plastik <span class="font-bold">10
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+        </div>
+
+
+        <!-- riwayat pohon -->
+
+        <div id="pohon-history" class="hidden">
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">1</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">2</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">3</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">4</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">5</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">6</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">7</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">8</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">9</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">10</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">11</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">12</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</p>
+
+            </div>
+
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">13</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">14</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">15</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">16</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">17</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">18</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2">
+                <h1 class="col-span-1 font-bold text-base">19</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-green.svg" class="w-6 h-6" alt="poin-icon">
+                    <span class="ml-4 text-[10px] font-semibold">5 Poin</span>
+                </div>
+                <p class="col-span-2 text-right text-[10px] font-semibold">01/12/2024 <br> 09:15</p>
+            </div>
+
+            <hr class="mx-8 border-none h-[1px] bg-[#D9D9D9]">
+
+            <div class="grid grid-cols-8 mx-8 items-center text-center font-montserrat py-2 mb-52">
+                <h1 class="col-span-1 font-bold text-base">20</h1>
+                <div class="icon col-span-5 flex items-center">
+                    <img src="../assets/images/icon/arrow-red.svg" class="w-6 h-6" alt="poin-icon">
+                    <div class="flex flex-col place-items-start">
+                        <p class="ml-4 text-[10px] font-bold">Donasi Pohon</p>
+                        <p class="ml-4 text-[10px] font-semibold">Pohon Mangrove <span class="font-bold">5
+                                pcs</span></p>
+                    </div>
+                </div>
+                <span class="col-span-2 text-right text-[10px] font-semibold">01/12/2024<br>07:45</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- bottom nav untuk user login -->
+    <div id="bottom-nav"
+        class="fixed bottom-0 w-full max-w-[480px] md:max-w-[400px] mx-auto bg-white h-[62px] shadow-nav">
+        <div class="flex justify-evenly py-2 mx-4">
+
+            <a href="./landing-page.html">
+                <div class="nav-item font-bold flex flex-col text-center">
+                    <img src="../assets/images/icon/home.svg" data-icon="home"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Beranda</span>
+                </div>
+            </a>
+
+            <a href="./bibit-pohon.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/pohon.svg" data-icon="pohon"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Pohon</span>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/history-green.svg" data-icon="history"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span
+                        class="nav-text text-white  bg-navGreen text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Riwayat</span>
+                </div>
+            </a>
+
+            <a href="./profile.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/profile.svg" data-icon="profile"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Profil</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+    <script>
+        const toggleSampah = document.getElementById('toggle-sampah');
+        const togglePohon = document.getElementById('toggle-pohon');
+        const sampahHistory = document.getElementById('sampah-history');
+        const pohonHistory = document.getElementById('pohon-history');
+        const riwayatTitle = document.getElementById('riwayat-title');
+
+        toggleSampah.addEventListener('click', () => {
+            sampahHistory.classList.remove('hidden');
+            pohonHistory.classList.add('hidden');
+            toggleSampah.classList.add('active');
+            togglePohon.classList.remove('active');
+            riwayatTitle.textContent = 'Riwayat Sampah';
+        });
+
+        togglePohon.addEventListener('click', () => {
+            sampahHistory.classList.add('hidden');
+            pohonHistory.classList.remove('hidden');
+            toggleSampah.classList.remove('active');
+            togglePohon.classList.add('active');
+            riwayatTitle.textContent = 'Riwayat Pohon';
+        });
+
+    </script>
+</body>
+
+</html>

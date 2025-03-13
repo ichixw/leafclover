@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Penjemputan</title>
+
+    <style>
+        /* Kontainer peta */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 428px;
+            border-radius: 0 0 1.5rem 1.5rem;
+            /* Tailwind: rounded-b-3xl */
+            overflow: hidden;
+        }
+
+        /* Bungkus progress di bawah peta */
+        .progress-wrapper {
+            position: absolute;
+            bottom: 48px;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: transparent;
+        }
+
+        .progress-svg {
+            width: 120%;
+            margin-left: -10%;
+            height: auto;
+        }
+
+        /* Path background (abu-abu) */
+        .progress-bg {
+            stroke: #D9D9D9;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        /* Path progress (hijau) */
+        .progress-line {
+            stroke: #C0E84E;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        /* Container step circle & text */
+        .steps-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 0 30px;
+            transform: translateY(44px);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-circle {
+            width: 22px;
+            height: 22px;
+            border: 1px solid #737373;
+            border-radius: 50%;
+            background: #737373;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: black;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-circle {
+            background: #6BA829;
+            border-color: #6BA829;
+        }
+
+        .step-text {
+            font-size: 10px;
+            text-align: center;
+            margin-top: 4px;
+            line-height: 1.2;
+            color: #333;
+            max-width: 60px;
+        }
+    </style>
+</head>
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto font-montserrat">
+    <!-- Top Bar -->
+    <div class="relative w-full h-[70px] flex items-center justify-center bg-primaryGreen z-10">
+        <a href="./landing-page.html" class="absolute left-4 h-5 w-5">
+            <img src="../assets/images/icon/left-arrow.svg" alt="logo">
+        </a>
+        <h1 class="text-black text-lg py-2 px-4 font-semibold">
+            Rincian Penjemputan
+        </h1>
+    </div>
+
+    <!-- Kontainer Peta -->
+    <div class="map-container mx-auto">
+        <!-- Map iframe -->
+        <iframe class="absolute top-0 left-0 w-full h-[364px] rounded-b-3xl"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16328182.696144234!2d107.22117646647732!3d-2.3813555440085796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sid!2sid!4v1733228094951!5m2!1sid!2sid"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border:0;"></iframe>
+
+        <!-- Progress di bawah peta -->
+        <div class="progress-wrapper">
+            <svg class="progress-svg" viewBox="0 0 300 60">
+                <!-- Background Path -->
+                <path d="M20 20 C20 50, 32 50, 40 50 L260 50 C268 50, 280 50, 280 20" class="progress-bg"></path>
+
+                <!-- Progress Path -->
+                <path id="progress-line" d="M20 20 C20 50, 32 50, 40 50 L260 50 C268 50, 280 50, 280 20"
+                    class="progress-line"></path>
+            </svg>
+
+            <!-- Steps -->
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-circle">1</div>
+                    <div class="step-text">Permintaanmu<br />sedang<br />diproses</div>
+                </div>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <div class="step-text">Kurir sedang<br />menuju<br />alamatmu</div>
+                </div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <div class="step-text">Sampai<br />di tujuan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Info -->
+    <div class="px-4 py-4 space-y-4">
+        <!-- Alamat -->
+        <div class="flex items-start gap-3">
+            <img src="../assets/images/icon/alamat.svg" alt="Icon Alamat" class="h-6 w-6" />
+            <div class="flex-1">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-[10px] font-bold">Alamat</h3>
+                    <a href="#" class="text-[10px] font-medium text-primaryGreen underline">Ganti alamat</a>
+                </div>
+                <p class="text-[10px] font-medium text-gray-700 mt-1 leading-5">
+                    Jl. Ps. Kembang No.26, Sosromenduran, Gedong Tengen,<br />
+                    Kota Yogyakarta, Daerah Istimewa Yogyakarta
+                </p>
+            </div>
+        </div>
+        <hr />
+        <!-- Tujuan -->
+        <div class="flex items-start gap-3">
+            <img src="../assets/images/icon/tujuan.svg" alt="Icon Tujuan" class="h-6 w-6" />
+            <div>
+                <h3 class="text-[10px] font-bold">Tujuan</h3>
+                <p class="text-[10px] font-medium text-gray-700 mt-1 leading-5">
+                    Jl. Ring Road Utara, Ngringin, Condongcatur,<br />
+                    Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta
+                </p>
+            </div>
+        </div>
+        <hr />
+        <!-- Biaya Pengiriman -->
+        <div class="flex items-start gap-3">
+            <img src="../assets/images/icon/pengiriman.svg" alt="Icon Biaya" class="h-6 w-6" />
+            <div>
+                <h3 class="text-[10px] font-bold">Biaya pengiriman</h3>
+                <p class="text-[10px] font-medium text-gray-700 mt-1 leading-5">
+                    Tidak di pungut biaya
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Bawah -->
+    <div
+        class="w-full flex flex-col max-w-[480px] md:max-w-[400px] mx-auto fixed inset-x-0 bottom-0 justify-items-center mb-8">
+        <div class="flex flex-col gap-y-2 mx-4">
+            <button id="back-button"
+                class="bg-primaryGreen w-full font-bold text-black text-sm py-4 rounded-xl focus:outline-none">
+                Kembali
+            </button>
+            <button id="next-button"
+                class="bg-primaryGreen w-full font-bold text-black text-sm py-4 rounded-xl focus:outline-none">
+                Selanjutnya
+            </button>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
+
+    <div id="modal-popup"
+        class="fixed inset-x-0 bottom-0 bg-white rounded-t-2xl shadow-lg hidden z-50 p-8 transition-transform transform translate-y-full font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto">
+        <h2 class="text-sm font-medium font-montserrat text-center mt-2">Selamat poinmu bertambah, <br> Teruskan usaha
+            baikmu!</h2>
+        <img src="../assets/images/banners/poin.png" class="mx-auto h-fit w-36 mt-6" alt="">
+        <h2 class="text-[40px] font-bold font-montserrat text-center mt-4">12 Poin</h2>
+        <div class="flex justify-center gap-x-4 mt-6">
+            <a href="./donasi-sampah.html">
+                <button class="bg-primaryGreen font-montserrat font-bold text-black text-sm py-4 w-36 rounded-lg">
+                    Kembali
+                </button>
+            </a>
+            <a href="./landing-page.html">
+                <button class="bg-primaryGreen font-montserrat font-bold text-black text-sm py-4 w-36 rounded-lg">
+                    Bibit Pohon
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalPopup = document.getElementById('modal-popup');
+
+        function updateProgress(step) {
+            const steps = document.querySelectorAll('.step');
+            const progressLine = document.getElementById('progress-line');
+            const nextButton = document.getElementById('next-button');
+
+            // Atur dashOffset berdasarkan step
+            let dashOffset;
+            switch (step) {
+                case 1:
+                    dashOffset = 210;
+                    break;
+                case 2:
+                    dashOffset = 140;
+                    break;
+                case 3:
+                    dashOffset = 0;
+                    break;
+                default:
+                    dashOffset = 300; // belum ada progress
+            }
+            progressLine.style.strokeDashoffset = dashOffset;
+
+            // Aktifkan step circle
+            steps.forEach((stepEl, index) => {
+                if (index + 1 <= step) {
+                    stepEl.classList.add('active');
+                } else {
+                    stepEl.classList.remove('active');
+                }
+            });
+
+            // Ubah teks tombol jika step terakhir
+            if (step === 3) {
+                nextButton.textContent = 'Selesai';
+            } else {
+                nextButton.textContent = 'Selanjutnya';
+            }
+        }
+
+        function showModal() {
+            modalOverlay.classList.remove('hidden');
+            modalPopup.classList.remove('hidden');
+            modalPopup.classList.remove('translate-y-full');
+            emailSent.textContent = emailInput.value;
+        }
+
+        function hideModal() {
+            modalOverlay.classList.add('hidden');
+            modalPopup.classList.add('hidden');
+            modalPopup.classList.add('translate-y-full');
+        }
+
+        modalOverlay.addEventListener('click', hideModal);
+
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            if (currentStep < 3) {
+                currentStep++;
+                updateProgress(currentStep);
+            } else {
+                showModal();
+            }
+        });
+        document.getElementById('back-button').addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateProgress(currentStep);
+            }
+        });
+
+        // Inisialisasi awal
+        updateProgress(currentStep);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Donasi Sampah</title>
+
+    <style>
+        /* Gaya untuk tiap jenis sampah saat dipilih */
+        .selected {
+            color: white;
+        }
+
+        .plastik-selected {
+            background-color: #F4DD00;
+            /* Warna background plastik saat aktif */
+        }
+
+        .kertas-selected {
+            background-color: #3A8CD7;
+            /* Warna background kertas saat aktif */
+        }
+
+        .sisa-makanan-selected {
+            background-color: #40B740;
+            /* Warna background sisa makanan saat aktif */
+        }
+
+        .botol-plastik-selected {
+            background-color: #F4DD00;
+            /* Warna background botol plastik saat aktif */
+        }
+
+        .botol-kaleng-selected {
+            background-color: #F4DD00;
+            /* Warna background botol kaleng saat aktif */
+        }
+
+        .pecahan-kaca-selected {
+            background-color: #F4DD00;
+            /* Warna background pecahan kaca saat aktif */
+        }
+
+        .text-sm {
+            white-space: nowrap;
+        }
+
+        /* Menjaga lebar kotak agar tetap sama */
+        .jenis-sampah {
+            width: 100%;
+            max-width: 180px;
+            min-width: 160px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .jenis-sampah {
+                width: 100%;
+                max-width: 180px;
+                min-width: 150px;
+                text-align: center;
+            }
+        }
+
+        /* Memastikan semua icon berada di tengah */
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            object-fit: contain;
+        }
+
+        #weight {
+            transition: border-color 0.3s;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        #address-input {
+            transition: border-color 0.3s;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Saat input masih kosong (placeholder ditampilkan), border tetap gray-300 */
+        #weight:placeholder-shown {
+            border-color: #D1D5DB;
+            /* Tailwind gray-300 */
+        }
+
+        /* Jika ada input (placeholder tidak tampil), border menjadi hitam */
+        #weight:not(:placeholder-shown) {
+            border-color: black;
+        }
+
+        #weight::-webkit-outer-spin-button,
+        #weight::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #weight::placeholder {
+            text-align: left;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        #address-input::placeholder {
+            text-align: left;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: normal;
+        }
+    </style>
+</head>
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto">
+    <div
+        class="relative w-full max-w-[480px] md:max-w-[400px] mx-auto h-[70px] flex items-center justify-center bg-primaryGreen z-10">
+
+        <a href="./landing-page.html" class="absolute left-8 h-5 w-5">
+            <img src="../assets/images/icon/left-arrow.svg" alt="logo">
+        </a>
+
+        <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold">
+            Donasi Sampah
+        </h1>
+    </div>
+
+    <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold mt-8 mb-8 ml-8">
+        Jenis Sampah
+    </h1>
+
+    <div class="w-full mx-auto px-8 font-montserrat mt-4">
+        <div class="grid grid-cols-2 mx-2 md:mx-0 gap-y-4 gap-x-4 justify-items-center">
+            <div class="border border-black rounded-lg py-6 jenis-sampah" id="plastik">
+                <div class="icon-container">
+                    <img src="../assets/images/sampah/plastik.svg" class="mx-auto h-10 w-10 icon" alt="logo">
+                </div>
+                <h2 class="text-black font-montserrat font-bold text-sm">Plastik</h2>
+            </div>
+            <div class="border border-black rounded-lg py-6 jenis-sampah" id="kertas">
+                <div class="icon-container">
+                    <img src="../assets/images/sampah/kertas.svg" class="mx-auto h-10 w-10 icon" alt="logo">
+                </div>
+                <h2 class="text-black font-montserrat font-bold text-sm">Kertas</h2>
+            </div>
+            <div class="border border-black rounded-lg py-6 jenis-sampah" id="sisa-makanan">
+                <div class="icon-container">
+                    <img src="../assets/images/sampah/sisa-makanan.svg" class="mx-auto h-10 w-10 icon" alt="logo">
+                </div>
+                <h2 class="text-black font-montserrat font-bold text-sm">Sisa Makanan</h2>
+            </div>
+            <div class="border border-black rounded-lg py-6 jenis-sampah" id="botol-plastik">
+                <div class="icon-container">
+                    <img src="../assets/images/sampah/botol-plastik.svg" class="mx-auto h-10 w-10 icon" alt="logo">
+                </div>
+                <h2 class="text-black font-montserrat font-bold text-sm">Botol Plastik</h2>
+            </div>
+            <div class="border border-black rounded-lg py-6 jenis-sampah" id="botol-kaleng">
+                <div class="icon-container">
+                    <img src="../assets/images/sampah/botol-kaleng.svg" class="mx-auto h-10 w-10 icon" alt="logo">
+                </div>
+                <h2 class="text-black font-montserrat font-bold text-sm">Botol Kaleng</h2>
+            </div>
+            <div class="border border-black rounded-lg py-6 jenis-sampah" id="pecahan-kaca">
+                <div class="icon-container">
+                    <img src="../assets/images/sampah/pecahan-kaca.svg" class="mx-auto h-10 w-10 icon" alt="logo">
+                </div>
+                <h2 class="text-black font-montserrat font-bold text-sm">Pecahan Kaca</h2>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="w-full max-w-[480px] md:max-w-[400px] mx-auto fixed inset-x-0 bottom-0 flex flex-col justify-items-center mb-8">
+        <button id="submit-button" disabled
+            class="bg-zinc-400 mx-6 font-montserrat font-bold text-zinc-500 text-sm py-4 px-4 rounded-xl focus:outline-none">
+            Selanjutnya
+        </button>
+    </div>
+
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
+
+    <!-- Modal bobot -->
+    <div id="modal-popup"
+        class="fixed inset-x-0 bottom-0 bg-white rounded-t-2xl shadow-lg hidden z-50 p-8 transition-transform transform translate-y-full font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto">
+        <img src="../assets/images/banners/masukkan-berat.png" class="mx-auto h-auto w-44" alt="" />
+        <h2 class="text-sm font-medium text-center mt-4">Masukkan berat sampahmu</h2>
+        <!-- Form input bobot -->
+        <form class="grid mt-4 space-y-2 mx-4">
+            <input type="number" id="weight" placeholder="Kilogram"
+                class="w-full mx-auto h-14 text-left font-bold text-sm border-2 border-gray-300 rounded-xl flex items-center" />
+            <button type="submit" id="inputBibit" disabled
+                class="bg-zinc-400 text-zinc-500 w-full mx-auto font-montserrat font-bold text-sm py-4 px-8 rounded-xl">
+                Kirim
+            </button>
+        </form>
+    </div>
+
+
+    <!-- Modal alamat -->
+    <div id="modal-address"
+        class="fixed inset-x-0 bottom-0 bg-white hidden translate-y-full rounded-t-2xl shadow-lg z-50 px-8 py-6 transition-transform transform font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto">
+        <h2 class="text-base font-semibold font-montserrat text-center">Pilih alamat</h2>
+        <div class="mt-2">
+            <label for="address-input" class="block text-sm font-semibold font-montserrat text-gray-700 mb-2">
+                Input alamat
+            </label>
+            <input type="text" id="address-input" placeholder="Alamat"
+                class="w-full mx-auto h-14 text-left font-sm text-sm border-2 border-gray-300 active:border-black rounded-xl flex items-center" />
+        </div>
+
+        <!-- Daftar alamat -->
+        <div class="mt-6 space-y-4">
+            <a href="./penjemputan.html">
+                <div class="mb-2">
+                    <h3 class="font-semibold text-xs text-gray-800">Alamat utama</h3>
+                    <p class="text-[10px] text-gray-500 leading-5 font-montserrat font-medium text-justify">
+                        Jl. P.S. Kembang No.26, Sosromenduran, Gedong Tengen,
+                        Kota Yogyakarta, Daerah Istimewa Yogyakarta
+                    </p>
+                </div>
+            </a>
+            <hr class="mb-2">
+            <a href="./penjemputan.html">
+                <div class="mb-2">
+                    <div>
+                        <h3 class="font-semibold text-xs text-gray-800">Alamat lain</h3>
+                        <p class="text-[10px] text-gray-500 leading-5 font-montserrat font-medium text-justify">
+                            Jl. Anggajaya No.26, Bak, Sleman Yogyakarta,
+                            Daerah Istimewa Yogyakarta
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalPopup = document.getElementById('modal-popup');
+        const inputBibitButton = document.getElementById('inputBibit');
+        const items = document.querySelectorAll(".border");
+        const submitButton = document.getElementById("submit-button");
+        const weightInput = document.getElementById("weight");
+        const modalAddress = document.getElementById("modal-address");
+
+        // Waste types that should use "Kilogram" as the placeholder
+        const kilogramWasteTypes = ["sisa-makanan", "kertas", "pecahan-kaca"];
+
+        // Waste types that should use "Satuan" as the placeholder
+        const satuanWasteTypes = ["plastik", "botol-plastik", "botol-kaleng"];
+
+        weightInput.addEventListener("input", () => {
+            const weightValue = weightInput.value;
+            if (weightValue > 0) {
+                inputBibitButton.disabled = false;
+                inputBibitButton.classList.add('bg-primaryGreen');
+                inputBibitButton.classList.remove('bg-zinc-400', 'text-zinc-500');
+            } else {
+                inputBibitButton.classList.remove('bg-primaryGreen');
+                inputBibitButton.classList.add('bg-zinc-400', 'text-zinc-500');
+                inputBibitButton.disabled = true;
+            }
+        });
+
+        items.forEach(item => {
+            item.addEventListener("click", () => {
+                items.forEach(i => {
+                    i.classList.remove("selected", `${i.id}-selected`);
+                    const icon = i.querySelector("img.icon");
+                    icon.src = `../assets/images/sampah/${i.id}.svg`;
+                    i.querySelector("h2").classList.remove("selected");
+                });
+
+                item.classList.add("selected", `${item.id}-selected`);
+                const selectedIcon = item.querySelector("img.icon");
+                selectedIcon.src = `../assets/images/sampah/${item.id}-white.svg`;
+                item.querySelector("h2").classList.add("selected");
+
+                submitButton.classList.add('bg-primaryGreen');
+                submitButton.classList.remove('bg-zinc-400', 'text-zinc-500');
+                submitButton.disabled = false;
+
+                if (kilogramWasteTypes.includes(item.id)) {
+                    weightInput.placeholder = "Kilogram";
+                } else if (satuanWasteTypes.includes(item.id)) {
+                    weightInput.placeholder = "Satuan";
+                }
+            });
+        });
+
+        function showModal() {
+            modalOverlay.classList.remove('hidden');
+            modalPopup.classList.remove('hidden');
+            modalPopup.classList.remove('translate-y-full');
+        }
+
+        function hideModal() {
+            modalOverlay.classList.add('hidden');
+            modalPopup.classList.add('hidden');
+            modalPopup.classList.add('translate-y-full');
+        }
+
+        [modalOverlay].forEach(input => input.addEventListener('click', hideModal));
+
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            showModal();
+        });
+
+        function showAddressModal() {
+            modalAddress.classList.remove('hidden', 'translate-y-full');
+        }
+
+        inputBibitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            hideModal();
+            showAddressModal();
+        });
+    </script>
+
+</body>
+
+</html>

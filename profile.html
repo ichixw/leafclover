@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Leaf Clover</title>
+
+    <style>
+        .shadow-med {
+            box-shadow: 0 0px 4px 2px rgba(0, 0, 0, 0.25);
+        }
+
+        .shadow-nav {
+            box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Kontainer peta */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 248px;
+            border-radius: 0 0 1.5rem 1.5rem;
+            /* Tailwind: rounded-b-3xl */
+            overflow: hidden;
+        }
+
+
+        .banner-wrapper {
+            position: absolute;
+            bottom: 46px;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: transparent;
+        }
+
+        .banner-svg {
+            width: 120%;
+            margin-left: -10%;
+            height: auto;
+        }
+
+        .banner-bg {
+            stroke: #C0E84E;
+            /* Updated color */
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        /* Circle image container */
+        .circle-image-container {
+            position: absolute;
+            bottom: -25%;
+            left: 50%;
+            transform: translateX(-50%);
+            /* Center horizontally and vertically */
+            width: 100px;
+            /* Circle size */
+            height: 100px;
+            border: 6px solid #C0E84E;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        /* Circle image */
+        .circle-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensure the image fits inside */
+            border-radius: 50%;
+            /* Force image into a circle */
+        }
+    </style>
+</head>
+
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto">
+    <div
+        class="relative w-full max-w-[480px] md:max-w-[400px] mx-auto h-[70px] flex items-center justify-center bg-primaryGreen z-10">
+
+        <a href="./landing-page.html" class="absolute left-8 h-5 w-5">
+            <img src="../assets/images/icon/left-arrow.svg" alt="logo">
+        </a>
+
+        <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold">
+            Bibit Pohon
+        </h1>
+    </div>
+
+    <div class="banner-container mx-auto">
+        <img src="../assets/images/picture/canvas.png" class="h-[185px] w-full object-cover rounded-b-xl" alt="">
+
+        <div class="banner-wrapper">
+            <svg class="banner-svg" viewBox="0 0 300 60">
+                <path d="M20 20 C20 50, 32 50, 40 50 L260 50 C268 50, 280 50, 280 20" class="banner-bg"></path>
+            </svg>
+
+            <div class="circle-image-container">
+                <img src="../assets/images/picture/profile-picture.png" alt="Circular Image">
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="my-0 max-w-[480px] md:max-w-[400px] mx-8 px-8 py-6 font-montserrat bg-[#F5FFD9] border-2 border-[#6BA829] rounded-lg flex justify-between items-center">
+        <div class="flex items-center space-x-1 ml-2">
+            <img src="../assets/images/icon/poin-riwayat.svg" alt="points-icon" class="h-6 w-6">
+            <span class="font-bold text-[12px] text-black">15</span>
+            <span class="text-[10px] text-black">Poin</span>
+        </div>
+
+        <div class="self-stretch border-l-2 border-[#6BA829] -my-6"></div>
+
+        <div class="flex items-center space-x-1 mr-2">
+            <img src="../assets/images/icon/pohon-riwayat.svg" alt="tree-icon" class="h-6 w-6">
+            <span class="font-bold text-[12px] text-black">2</span>
+            <span class="text-[10px] text-black">Pohon</span>
+        </div>
+    </div>
+
+
+    <div id="user-data" class="flex flex-col gap-y-2 mx-4 mt-8">
+
+        <div class="flex justify-between text-black font-montserrat text-[12px] px-4 py-2">
+            <h2 class="font-semibold">Nama Pengguna</h2>
+            <div class="flex">
+                <h2>kucing.ganteng</h2>
+                <button>
+                    <img src="../assets/images/icon/edit-profile.svg" data-icon="profile"
+                        class="edit-btn nav-icon h-5 w-fit self-center object-cover ml-1" alt="">
+                </button>
+            </div>
+        </div>
+
+        <hr class="mx-4 border-none h-[1px] bg-[#D9D9D9]">
+
+        <div class="flex justify-between text-black font-montserrat text-[12px] px-4 py-2">
+            <h2 class="font-semibold">Email</h2>
+            <div class="flex">
+                <h2>kucing.ganteng@gmail.com</h2>
+                <button>
+                    <img src="../assets/images/icon/edit-profile.svg" data-icon="profile"
+                        class="edit-btn nav-icon h-5 w-fit self-center object-cover ml-1" alt="">
+                </button>
+            </div>
+        </div>
+
+        <hr class="mx-4 border-none h-[1px] bg-[#D9D9D9]">
+
+        <div class="flex justify-between text-black font-montserrat text-[12px] px-4 py-2">
+            <h2 class="font-semibold">Kata Sandi</h2>
+            <div class="flex">
+                <h2>********</h2>
+                <button>
+                    <img src="../assets/images/icon/edit-profile.svg" data-icon="profile"
+                        class="edit-btn nav-icon h-5 w-fit self-center object-cover ml-1" alt="">
+                </button>
+            </div>
+        </div>
+
+        <hr class="mx-4 border-none h-[1px] bg-[#D9D9D9]">
+
+        <div class="flex justify-between text-black font-montserrat text-[12px] px-4 py-2">
+            <h2 class="font-semibold">Alamat</h2>
+            <div class="flex items-start">
+                <h2 class="text-right">Jl. Ps. Kembang No.26, Sosromenduran,<br> Gedong Tengen, Kota Yogyakarta,
+                    <br>Daerah Istimewa Yogyakarta
+                </h2>
+                <button>
+                    <img src="../assets/images/icon/edit-profile.svg" data-icon="profile"
+                        class="edit-btn nav-icon h-5 w-fit self-center object-cover ml-1" alt="">
+                </button>
+            </div>
+        </div>
+
+
+        <button id="logout-dialog-button"
+            class="text-center font-montserrat font-bold text-[15px] text-[#FF0000] mt-24">Keluar
+        </button>
+
+    </div>
+
+
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
+
+
+    <div id="modal-logout"
+        class="fixed inset-x-0 bottom-0 hidden translate-y-full bg-white rounded-t-2xl shadow-lg z-50 p-8 transition-transform transform font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto ease-in-out duration-300">
+
+        <h2 id="modal-title" class="text-xl font-semibold text-center text-[#FF0000]">Keluar</h2>
+
+        <img id="modal-image" src="../assets/images/banners/logout-banner.png"
+            class="w-full h-36 rounded-xl object-contain mt-4" alt="Mangrove Image">
+
+        <p id="modal-text" class="text-center text-[15px] font-bold mt-4">Apakah anda yakin ingin keluar?</p>
+        <div class="flex flex-col gap-y-2 mx-4 mt-4">
+            <button class="bg-primaryGreen font-montserrat font-bold text-black text-sm py-4 rounded-lg"
+                id="cancel-button">
+                Batal
+            </button>
+            <button class="bg-primaryGreen text-black font-montserrat font-bold text-sm py-4 rounded-lg"
+                id="logout-button">
+                Ya
+            </button>
+            <button class="bg-primaryGreen hidden text-black font-montserrat font-bold text-sm py-4 rounded-lg"
+                id="done-button">
+                Selesai
+            </button>
+        </div>
+    </div>
+
+    <div id="modal-perubahan"
+        class="fixed inset-x-0 bottom-0 bg-white rounded-t-2xl shadow-lg hidden translate-y-full z-50 p-8 transition-transform transform font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto ease-in-out duration-300">
+
+        <h2 id="modal-title-edit" class="text-[15px] font-semibold text-center text-black">Konfirmasi perubahan</h2>
+
+        <img id="modal-image-edit" src="../assets/images/banners/edit-profile.png"
+            class="w-full h-36 rounded-xl object-contain mt-4" alt="Mangrove Image">
+
+        <p id="modal-text-edit" class="text-center text-[15px] font-bold mt-4">Apakah anda yakin melakukan perubahan?
+        </p>
+
+        <div class="flex flex-col gap-y-2 mx-4 mt-4">
+            <button class="bg-primaryGreen font-montserrat font-bold text-black text-sm py-4 rounded-lg"
+                id="cancel-edit-button">
+                Batal
+            </button>
+            <button class="bg-primaryGreen text-black font-montserrat font-bold text-sm py-4 rounded-lg"
+                id="edit-confirm-button">
+                Simpan
+            </button>
+            <button class="bg-primaryGreen hidden text-black font-montserrat font-bold text-sm py-4 rounded-lg"
+                id="edit-done-button">
+                Selesai
+            </button>
+        </div>
+    </div>
+
+
+    <!-- bottom nav untuk user login -->
+    <div id="bottom-nav"
+        class="fixed bottom-0 w-full max-w-[480px] md:max-w-[400px] mx-auto bg-white h-[62px] shadow-nav">
+        <div class="flex justify-evenly py-2 mx-4">
+
+            <a href="./landing-page.html">
+                <div class="nav-item font-bold flex flex-col text-center">
+                    <img src="../assets/images/icon/home.svg" data-icon="home"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Beranda</span>
+                </div>
+            </a>
+
+            <a href="./bibit-pohon.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/pohon.svg" data-icon="pohon"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Pohon</span>
+                </div>
+            </a>
+
+            <a href="./riwayat.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/history.svg" data-icon="history"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Riwayat</span>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/profile-green.svg" data-icon="profile"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span
+                        class="nav-text text-white bg-navGreen text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Profil</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+    <script>
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalLogout = document.getElementById('modal-logout');
+        const cancelButton = document.getElementById('cancel-button');
+        const logoutButton = document.getElementById('logout-button');
+        const logoutDialogButton = document.getElementById('logout-dialog-button');
+        const logoutModalTitle = document.getElementById('modal-title');
+        const logoutModalImage = document.getElementById('modal-image');
+        const doneButton = document.getElementById('done-button');
+        const modalText = document.getElementById('modal-text');
+
+        const modalEditProfile = document.getElementById('modal-perubahan');
+        const cancelEditButton = document.getElementById('cancel-edit-button');
+        const editConfirmButton = document.getElementById('edit-confirm-button');
+        const doneEditButton = document.getElementById('edit-done-button');
+        const editModalTitle = document.getElementById('modal-title-edit');
+        const editModalImage = document.getElementById('modal-image-edit');
+        const editModalText = document.getElementById('modal-text-edit');
+
+        logoutDialogButton.addEventListener('click', () => {
+            showLogoutModal();
+        });
+
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                showEditProfileModal()
+            });
+        });
+
+        logoutButton.addEventListener('click', () => {
+            logoutModalTitle.textContent = 'Berhasil';
+            logoutModalTitle.classList.remove('text-xl', 'text-[#FF0000]');
+            logoutModalTitle.classList.add('text-[32px]', 'text-black');
+            modalText.classList.add('hidden');
+            cancelButton.classList.add('hidden');
+            logoutButton.classList.add('hidden');
+            doneButton.classList.remove('hidden');
+            logoutModalImage.src = '../assets/images/banners/success-logout.png';
+            logout()
+        });
+
+        editConfirmButton.addEventListener('click', () => {
+            editModalTitle.textContent = 'Berhasil';
+            editModalTitle.classList.remove('text-[15px]');
+            editModalTitle.classList.add('text-[32px]');
+            cancelEditButton.classList.add('hidden');
+            editConfirmButton.classList.add('hidden');
+            doneEditButton.classList.remove('hidden');
+            editModalText.classList.add('hidden');
+            editModalImage.src = '../assets/images/banners/edit-profile-success.png';
+        })
+
+        doneButton.addEventListener('click', () => {
+            setTimeout(() => {
+                window.location.replace("./landing-page.html");
+            }, 500);
+        });
+
+        doneEditButton.addEventListener('click', () => {
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
+        });
+
+        cancelButton.addEventListener('click', () => {
+            hideLogoutModal();
+        });
+
+        cancelEditButton.addEventListener('click', () => {
+            hideEditProfileModal();
+        });
+
+        doneButton.addEventListener('click', () => {
+            window.location.href = './landing-page.html';
+        });
+
+        // Fungsi untuk menutup modal
+        function hideLogoutModal() {
+            modalOverlay.classList.add("hidden");
+            modalLogout.classList.add("hidden");
+            modalLogout.classList.add("translate-y-full");
+        }
+
+        function showLogoutModal() {
+            modalOverlay.classList.remove("hidden");
+            modalLogout.classList.remove("hidden");
+            modalLogout.classList.remove("translate-y-full");
+        }
+
+        function showEditProfileModal() {
+            modalOverlay.classList.remove("hidden");
+            modalEditProfile.classList.remove("hidden");
+            modalEditProfile.classList.remove("translate-y-full");
+        }
+
+        function hideEditProfileModal() {
+            modalOverlay.classList.add("hidden");
+            modalEditProfile.classList.add("hidden");
+            modalEditProfile.classList.add("translate-y-full");
+        }
+
+        modalOverlay.addEventListener('click', () => {
+            hideLogoutModal();
+            hideEditProfileModal();
+            modalOverlay.classList.add("hidden");
+        });
+
+        function logout() {
+            localStorage.setItem('isLoggedIn', false);
+        }
+
+    </script>
+</body>
+
+</html>

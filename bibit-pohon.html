@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Leaf Clover</title>
+
+    <style>
+        #review-input::placeholder {
+            font-size: 12px;
+            font-weight: 500;
+            color: #838383;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .shadow-med {
+            box-shadow: 0 0px 4px 2px rgba(0, 0, 0, 0.25);
+        }
+
+        #toggleSwitch:checked+div>div {
+            transform: translateX(100%);
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 3px solid #737373;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 500;
+            color: #737373;
+            cursor: pointer;
+            background: #D9D9D9;
+        }
+
+        .quantity-btn:disabled {
+            background: #E5E7EB;
+            cursor: not-allowed;
+        }
+
+        .quantity-value {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .shadow-nav {
+            box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .selected-plant {
+            border: 3px solid black;
+        }
+    </style>
+</head>
+
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto">
+    <div
+        class="relative w-full max-w-[480px] md:max-w-[400px] mx-auto h-[70px] flex items-center justify-center bg-primaryGreen z-10">
+
+        <a href="./landing-page.html" class="absolute left-8 h-5 w-5">
+            <img src="../assets/images/icon/left-arrow.svg" alt="logo">
+        </a>
+
+        <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold">
+            Bibit Pohon
+        </h1>
+    </div>
+
+    <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold mt-8 mb-2 ml-4">
+        Pilih Bibit Pohon
+    </h1>
+
+    <div class="space-y-4 px-8">
+        <!-- Mangrove -->
+        <a href="javascript:void(0)"
+            class="plant-btn flex items-center bg-gradient-to-r from-[#eff8cf] via-[#c5de85] to-[#7caf26] rounded-xl shadow-md"
+            data-plant="Mangrove">
+            <img src="../assets/images/picture/mangrove.png" alt="Mangrove" class="h-fit w-20 object-cover">
+            <span class="text-xl font-bold text-black flex-grow text-center">Mangrove</span>
+        </a>
+
+        <!-- Sengon -->
+        <a href="javascript:void(0)"
+            class="plant-btn flex items-center bg-gradient-to-r from-[#eff8cf] via-[#c5de85] to-[#7caf26] rounded-xl shadow-md"
+            data-plant="Sengon">
+            <img src="../assets/images/picture/sengon.png" alt="Sengon" class="h-fit w-20 object-cover">
+            <span class="text-xl font-bold text-black flex-grow text-center">Sengon</span>
+        </a>
+
+        <!-- Akasia -->
+        <a href="javascript:void(0)"
+            class="plant-btn flex items-center bg-gradient-to-r from-[#eff8cf] via-[#c5de85] to-[#7caf26] rounded-xl shadow-md"
+            data-plant="Akasia">
+            <img src="../assets/images/picture/mangrove.png" alt="Akasia" class="h-fit w-20 object-cover">
+            <span class="text-xl font-bold text-black flex-grow text-center">Akasia</span>
+        </a>
+
+        <!-- Trembesi -->
+        <a href="javascript:void(0)"
+            class="plant-btn flex items-center bg-gradient-to-r from-[#eff8cf] via-[#c5de85] to-[#7caf26] rounded-xl shadow-md"
+            data-plant="Trembesi">
+            <img src="../assets/images/picture/mangrove.png" alt="Trembesi" class="h-fit w-20 object-cover">
+            <span class="text-xl font-bold text-black flex-grow text-center">Trembesi</span>
+        </a>
+    </div>
+
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
+
+    <div id="modal-popup"
+        class="fixed inset-x-0 bottom-0 bg-white rounded-t-2xl shadow-lg z-50 p-8 hidden translate-y-full transition-transform transform font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto ease-in-out duration-300">
+
+        <!-- Image and Title -->
+        <h2 id="modal-title" class="text-2xl font-semibold text-center">Mangrove</h2>
+        <img id="modal-image" src="../assets/images/picture/mangrove-big.png"
+            class="w-full h-64 rounded-xl object-contain" alt="Mangrove Image">
+
+        <p class="text-base text-center font-semibold">Jumlah bibit</p>
+
+        <div class="quantity-control mt-4 mx-8">
+            <div class="flex items-center justify-between w-full bg-[#D9D9D9] rounded-lg" id="quantity-control">
+                <button class="quantity-btn" id="decreaseBtn" disabled>-</button>
+                <span class="quantity-value flex-grow text-center" id="quantityValue">0</span>
+                <button class="quantity-btn" id="increaseBtn">+</button>
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-items-center mx-8 mt-8" disabled>
+            <button id="submit-button"
+                class="bg-zinc-400 text-zinc-500 font-montserrat font-bold text-sm py-4 rounded-lg">
+                Kirim
+            </button>
+        </div>
+    </div>
+
+    <div id="modal-review"
+        class="fixed inset-x-0 bottom-0 bg-white hidden translate-y-full rounded-t-2xl shadow-lg z-50 p-8 transition-transform transform font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto ease-in-out duration-300">
+
+        <!-- Image and Title -->
+        <h2 id="modal-title" class="text-base font-bold text-center">Ceritakan pengalamanmu bersama <br>
+            <span class="text-primaryGreen">Leaf Clover Indonesia</span>
+        </h2>
+
+        <textarea placeholder="Tulis di sini"
+            class="w-full h-52 rounded-lg border-2 border-black p-2 mt-4 resize-none text-sm font-semibold"
+            id="review-input"></textarea>
+
+        <div class="flex justify-end items-center mt-4">
+            <span class="text-[12px] text-center font-semibold">Tanpa nama</span>
+            <label class="relative inline-flex ml-2 items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" id="toggleSwitch">
+                <div class="w-10 h-6 border-2 bg-[#F5FFD9] border-[#6BA829] rounded-full peer">
+                </div>
+                <div
+                    class="absolute left-1 top-1 bg-[#6BA829] w-4 h-4 rounded-full transition-transform peer-checked:translate-x-full shadow-med">
+                </div>
+            </label>
+        </div>
+
+        <div class="flex justify-center gap-x-4 mt-6">
+            <button class="bg-primaryGreen font-montserrat font-bold text-black text-sm py-4 w-36 rounded-lg"
+                id="back-button">
+                Kembali
+            </button>
+            <button class="bg-zinc-400 text-zinc-500 font-montserrat font-bold text-sm py-4 w-36 rounded-lg"
+                id="send-button" disabled>
+                Kirim
+            </button>
+        </div>
+
+    </div>
+
+    <div id="modal-success"
+        class="fixed inset-x-0 bottom-0 hidden translate-y-full bg-white rounded-t-2xl shadow-lg z-50 p-8 transition-transform transform font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto ease-in-out duration-300">
+
+        <h2 id="modal-title" class="text-2xl font-semibold text-center mt-8">Berhasil</h2>
+
+        <img id="modal-image" src="../assets/images/banners/berhasil-bibit.png"
+            class="w-full h-44 rounded-xl object-contain mt-4" alt="Mangrove Image">
+
+        <p class="text-center text-[12px] font-bold mt-12">Terima kasih sudah berkontribusi untuk <br> lingkungan yang
+            lebih
+            hijau</p>
+        <div class="flex justify-center gap-x-4 mt-8">
+            <button class="bg-primaryGreen font-montserrat font-bold text-black text-sm py-4 w-36 rounded-lg"
+                id="back-button-success">
+                Kembali
+            </button>
+            <button class="bg-primaryGreen text-black font-montserrat font-bold text-sm py-4 w-36 rounded-lg"
+                id="done-button">
+                Kirim
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- bottom nav untuk user login -->
+    <div id="bottom-nav"
+        class="fixed bottom-0 w-full max-w-[480px] md:max-w-[400px] mx-auto bg-white h-[62px] shadow-nav">
+        <div class="flex justify-evenly py-2 mx-4">
+
+            <a href="./landing-page.html">
+                <div class="nav-item font-bold flex flex-col text-center">
+                    <img src="../assets/images/icon/home.svg" data-icon="home"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Beranda</span>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/pohon-green.svg" data-icon="pohon"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span
+                        class="nav-text text-white bg-navGreen text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Pohon</span>
+                </div>
+            </a>
+
+            <a href="./riwayat.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/history.svg" data-icon="history"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Riwayat</span>
+                </div>
+            </a>
+
+            <a href="./profile.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/profile.svg" data-icon="profile"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Profil</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+    <script>
+        const decreaseBtn = document.getElementById('decreaseBtn');
+        const increaseBtn = document.getElementById('increaseBtn');
+        const quantityValue = document.getElementById('quantityValue');
+        const quantityControl = document.getElementById('quantity-control');
+        const submitButton = document.getElementById('submit-button');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const reviewInput = document.getElementById('review-input');
+        const backButton = document.getElementById('back-button');
+        const sendButton = document.getElementById('send-button');
+        const doneButton = document.getElementById('done-button');
+        const backButtonSuccess = document.getElementById('back-button-success');
+        const modalSuccess = document.getElementById('modal-success');
+        const modalReview = document.getElementById('modal-review');
+
+        let currentValue = 0;
+        let plantName = "";
+
+        reviewInput.addEventListener('input', () => {
+            if (reviewInput.value.trim() === '') {
+                sendButton.disabled = true;
+                sendButton.classList.remove('bg-primaryGreen', 'text-black');
+                sendButton.classList.add('bg-zinc-400', 'text-zinc-500');
+            } else {
+                sendButton.disabled = false;
+                sendButton.classList.remove('bg-zinc-400', 'text-zinc-500');
+                sendButton.classList.add('bg-primaryGreen', 'text-black');
+            }
+        });
+
+        submitButton.addEventListener('click', () => {
+            hideModal();
+            showReviewModal();
+        });
+
+        sendButton.addEventListener('click', () => {
+            hideReviewModal();
+            showSuccessModal();
+        });
+
+        backButton.addEventListener('click', () => {
+            hideReviewModal();
+            showModal(plantName);
+        });
+
+        backButtonSuccess.addEventListener('click', () => {
+            hideSuccessModal();
+            showReviewModal();
+        });
+
+        doneButton.addEventListener('click', () => {
+            window.location.href = './landing-page.html';
+        });
+
+        function checkQuantity() {
+            if (quantityValue.textContent < 1) {
+                submitButton.classList.remove('bg-primaryGreen', 'text-black');
+                submitButton.classList.add('bg-zinc-400', 'text-zinc-500');
+                submitButton.disabled = true;
+            } else if (quantityValue.textContent > 0) {
+                submitButton.classList.remove('bg-zinc-400', 'text-zinc-500');
+                submitButton.classList.add('bg-primaryGreen', 'text-black');
+                submitButton.disabled = false;
+            }
+        }
+
+        function updateValue(newValue) {
+            currentValue = newValue;
+            quantityValue.textContent = currentValue;
+            decreaseBtn.disabled = currentValue === 0;
+            submitButton.disabled = currentValue === 0;
+
+            // Update button styles
+            decreaseBtn.style.background = currentValue === 0 ? '#D9D9D9' : '#EFF8CF';
+            increaseBtn.style.background = currentValue === 0 ? '#D9D9D9' : '#EFF8CF';
+            quantityControl.style.background = currentValue === 0 ? '#E5E7EB' : '#EFF8CF';
+        }
+
+        decreaseBtn.addEventListener('click', () => {
+            if (currentValue > 0) {
+                updateValue(currentValue - 1);
+            }
+            checkQuantity();
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            updateValue(currentValue + 1);
+            checkQuantity();
+        });
+
+        // Fungsi untuk menampilkan modal
+        function showModal(plantName) {
+            const plants = [
+                {
+                    name: "Mangrove",
+                    image: "../assets/images/picture/mangrove-big.png"
+                },
+                {
+                    name: "Sengon",
+                    image: "../assets/images/picture/sengon-big.png"
+                },
+                {
+                    name: "Akasia",
+                    image: "../assets/images/picture/akasia-big.png"
+                },
+                {
+                    name: "Trembesi",
+                    image: "../assets/images/picture/trembesi-big.png"
+                }
+            ];
+
+
+            const selectedPlant = plants.find(plant => plant.name === plantName);
+
+            // Update nama dan gambar di dalam modal
+            document.getElementById("modal-title").textContent = selectedPlant.name;
+            document.getElementById("modal-image").src = selectedPlant.image;
+
+            // Tampilkan modal dan overlay
+            modalOverlay.classList.remove("hidden");
+            document.getElementById("modal-popup").classList.remove("hidden");
+
+            // Tambahkan animasi untuk popup
+            document.getElementById("modal-popup").classList.remove("translate-y-full");
+        }
+
+        // Fungsi untuk menutup modal
+        function hideModal() {
+            modalOverlay.classList.add("hidden");
+            document.getElementById("modal-popup").classList.add("hidden");
+            document.getElementById("modal-popup").classList.add("translate-y-full");
+        }
+
+        function showReviewModal() {
+            modalOverlay.classList.remove("hidden");
+            modalReview.classList.remove("hidden");
+            modalReview.classList.remove("translate-y-full");
+        }
+
+        function hideReviewModal() {
+            modalOverlay.classList.add("hidden");
+            modalReview.classList.add("hidden");
+            modalReview.classList.add("translate-y-full");
+        }
+
+        function showSuccessModal() {
+            modalOverlay.classList.remove("hidden");
+            modalSuccess.classList.remove("hidden");
+            modalSuccess.classList.remove("translate-y-full");
+        }
+
+        function hideSuccessModal() {
+            modalOverlay.classList.add("hidden");
+            modalSuccess.classList.add("hidden");
+            modalSuccess.classList.add("translate-y-full");
+        }
+
+        modalOverlay.addEventListener('click', () => {
+            hideModal();
+            hideReviewModal();
+            hideSuccessModal();
+            modalOverlay.classList.add("hidden");
+        });
+
+        document.querySelectorAll('.plant-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                plantName = this.dataset.plant;
+
+                document.querySelectorAll('.plant-btn').forEach(btn => {
+                    btn.classList.remove('selected-plant');
+                });
+
+                this.classList.add('selected-plant');
+
+                showModal(plantName);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

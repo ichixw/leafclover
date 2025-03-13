@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Register</title>
+</head>
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto">
+    <div
+        class="relative w-full max-w-[480px] md:max-w-[400px] mx-auto h-[70px] flex items-center justify-center bg-primaryGreen z-10">
+
+        <a href="./landing-page.html" class="absolute left-8 h-5 w-5">
+            <img src="../assets/images/icon/left-arrow.svg" alt="logo">
+        </a>
+
+        <h1 class="text-black text-lg py-2 px-4 rounded-full font-montserrat font-semibold">
+            Register
+        </h1>
+    </div>
+
+    <div class="mx-auto flex justify-center mt-4">
+        <img src="../assets/main-logo.svg" class="w-40 h-fit" alt="">
+    </div>
+
+    <div class="w-full mx-auto px-10 font-montserrat justify-center mt-4">
+        <form action="" method="post" class="w-full">
+            <div class="mb-2">
+                <label class="text-black text-sm font-bold mb-3" for="name">Nama Lengkap</label>
+                <input class="mt-1 shadow appearance-none text-[12px] border rounded-xl w-full py-4 px-4 text-black"
+                    id="name" name="name" type="text" placeholder="Nama Lengkap" required>
+            </div>
+
+            <div class="mb-2">
+                <label class="text-black text-sm font-bold mb-3" for="email">Email</label>
+                <input class="mt-1 shadow appearance-none text-[12px] border rounded-xl w-full py-4 px-4 text-black"
+                    id="email" name="email" type="email" placeholder="Email" required>
+            </div>
+
+            <div class="mb-2">
+                <label class="text-black text-sm font-bold mb-3" for="username">Nama Pengguna</label>
+                <input class="mt-1 shadow appearance-none text-[12px] border rounded-xl w-full py-4 px-4 text-black"
+                    id="username" name="username" type="text" placeholder="Nama Pengguna" required>
+            </div>
+
+            <div class="mb-4 relative">
+                <label class="text-black text-sm font-bold mb-3" for="password">Kata Sandi</label>
+                <input class="mt-1 shadow appearance-none text-[12px] border rounded-xl w-full py-4 px-4 text-black"
+                    id="password" type="password" placeholder="Kata Sandi" required>
+                <img src="../assets/images/icon/eye-slash.svg" id="toggle-password"
+                    class="absolute right-4 top-1/2 transform my-auto h-4 mt-1 w-max cursor-pointer"
+                    alt="Eye Off Icon" />
+            </div>
+
+            <div class="mb-4 relative">
+                <label class="text-black text-sm font-bold mb-3" for="password-confirmation">Konfirmasi Kata
+                    Sandi</label>
+                <input class="shadow appearance-none text-[12px] border rounded-xl w-full py-4 px-4 text-black"
+                    id="password-confirmation" type="password" placeholder="Konfirmasi Kata Sandi" required>
+                <img src="../assets/images/icon/eye-slash.svg" id="toggle-password-confirmation"
+                    class="absolute right-4 top-1/2 transform my-auto h-4 mt-1 w-max cursor-pointer"
+                    alt="Eye Off Icon" />
+            </div>
+
+            <p id="error-message" class="text-red-500 text-[10px] hidden">Konfirmasi kata sandi tidak sesuai
+            </p>
+
+        </form>
+    </div>
+
+    <div class="flex flex-col mx-4 justify-items-center mt-6 z-40">
+        <button id="submit-button" disabled
+            class="bg-zinc-400 mx-6 font-montserrat font-bold text-zinc-500 text-sm py-4 px-4 rounded-xl">
+            Daftar Akun
+        </button>
+
+    </div>
+
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
+
+    <div id="modal-popup"
+        class="fixed inset-x-0 bottom-0 bg-white rounded-t-2xl shadow-lg hidden z-50 p-8 transition-transform transform translate-y-full font-montserrat w-full max-w-[480px] md:max-w-[400px] mx-auto">
+        <img src="../assets/images/banners/confirm.png" class="mx-auto h-fit w-64 mt-8" alt="">
+        <h2 class="text-sm font-medium text-center mt-4">Kode verifikasi telah dikirimkan ke email</h2>
+        <h2 class="text-base font-semibold text-center" id="email-sent"></h2>
+        <p id="change-email" class="text-base text-center mt-3 font-semibold underline">Ganti email</p>
+        <a href="./verification.html">
+            <div class="flex flex-col justify-items-center mt-6" onclick="register()">
+                <button id="close-modal"
+                    class="bg-primaryGreen mx-6 font-montserrat font-bold text-black text-sm py-4 px-4 rounded-lg">
+                    Selanjutnya
+                </button>
+            </div>
+        </a>
+    </div>
+
+
+    <script>
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmationInput = document.getElementById('password-confirmation');
+        const submitButton = document.getElementById('submit-button');
+        const passwordError = document.getElementById('error-message');
+        const togglePasswordIcon = document.getElementById('toggle-password');
+        const togglePasswordConfirmationIcon = document.getElementById('toggle-password-confirmation');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalPopup = document.getElementById('modal-popup');
+        const closeModalButton = document.getElementById('close-modal');
+        const emailSent = document.getElementById('email-sent');
+        const changeEmail = document.getElementById('change-email');
+
+        function checkFields() {
+            if (
+                nameInput.value.trim() !== "" &&
+                emailInput.value.trim() !== "" &&
+                usernameInput.value.trim() !== "" &&
+                passwordInput.value.trim() !== "" &&
+                passwordConfirmationInput.value.trim() !== ""
+            ) {
+                submitButton.classList.add('bg-primaryGreen');
+                submitButton.classList.remove('bg-zinc-400', 'text-zinc-500');
+                submitButton.disabled = false;
+            } else {
+                submitButton.classList.remove('bg-primaryGreen');
+                submitButton.classList.add('bg-zinc-400', 'text-zinc-500');
+                submitButton.disabled = true;
+            }
+        }
+
+        [nameInput, emailInput, usernameInput, passwordInput, passwordConfirmationInput].forEach(input => {
+            input.addEventListener('input', checkFields);
+        });
+
+        togglePasswordIcon.addEventListener('click', function () {
+            const passwordFieldType = passwordInput.getAttribute('type');
+            if (passwordFieldType === 'password') {
+                passwordInput.setAttribute('type', 'text');
+                togglePasswordIcon.src = '../assets/images/icon/eye-on.svg';
+            } else {
+                passwordInput.setAttribute('type', 'password');
+                togglePasswordIcon.src = '../assets/images/icon/eye-slash.svg';
+            }
+        });
+
+        togglePasswordConfirmationIcon.addEventListener('click', function () {
+            const passwordConfirmFieldType = passwordConfirmationInput.getAttribute('type');
+            if (passwordConfirmFieldType === 'password') {
+                passwordConfirmationInput.setAttribute('type', 'text');
+                togglePasswordConfirmationIcon.src = '../assets/images/icon/eye-on.svg';
+            } else {
+                passwordConfirmationInput.setAttribute('type', 'password');
+                togglePasswordConfirmationIcon.src = '../assets/images/icon/eye-slash.svg';
+            }
+        });
+
+        function showModal() {
+            modalOverlay.classList.remove('hidden');
+            modalPopup.classList.remove('hidden');
+            modalPopup.classList.remove('translate-y-full');
+            emailSent.textContent = emailInput.value;
+        }
+
+        function hideModal() {
+            modalOverlay.classList.add('hidden');
+            modalPopup.classList.add('hidden');
+            modalPopup.classList.add('translate-y-full');
+        }
+
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (passwordInput.value !== passwordConfirmationInput.value) {
+                passwordError.classList.remove('hidden');
+            } else {
+                passwordError.classList.add('hidden');
+                showModal();
+            }
+        });
+
+        [closeModalButton, modalOverlay, changeEmail].forEach(input => input.addEventListener('click', hideModal));
+
+    </script>
+
+</body>
+
+</html>

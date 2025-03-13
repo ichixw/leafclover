@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Leaf Clover</title>
+</head>
+
+<style>
+    .navbar {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .shadow-nav {
+        box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* gradien sliding backgrou nd */
+    #backgrounds::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+    }
+
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* kontainer animasi text */
+    .text-transition {
+        position: relative;
+        height: 50px;
+        width: 120px;
+    }
+
+    .text-transition h1 {
+        position: absolute;
+        width: 100%;
+        text-align: left;
+        font-size: 2.5rem;
+        font-weight: 600;
+        opacity: 0;
+        transform: translateY(80px);
+        z-index: 0;
+    }
+
+    /* animasi text */
+    @keyframes slide-up {
+        0% {
+            transform: translateY(60px);
+            opacity: 0;
+        }
+
+        50% {
+            transform: translateY(-5px);
+            opacity: 0.7;
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-down {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        50% {
+            transform: translateY(50px);
+            opacity: 0.4;
+        }
+
+        100% {
+            transform: translateY(60px);
+            opacity: 0;
+        }
+    }
+
+    .slide-up {
+        z-index: 1;
+        animation: slide-up 0.6s forwards;
+    }
+
+    .slide-down {
+        z-index: 2;
+        animation: slide-down 0.6s forwards;
+    }
+</style>
+
+
+
+<body class="my-0 max-w-[480px] md:max-w-[400px] mx-auto">
+
+
+
+    <!-- navigation bar -->
+    <div
+        class="navbar w-full max-w-[480px] md:max-w-[400px] mx-auto h-[74px] flex justify-between items-center bg-primaryGreen absolute top-0 left-0 right-0 z-10">
+        <img src="../assets/main-logo.svg" class="ml-8 h-14 w-14 object-cover" alt="logo">
+
+        <a href="./login.html" id="login-button">
+            <button
+                class="bg-secondaryBlue hover:bg-secondaryBlue text-white text-sm py-2 px-4 mr-8 rounded-full font-montserrat font-normal">Masuk</button>
+        </a>
+
+        <img src="../assets/images/icon/notification-filled.png" id="notif" class="mr-8 h-8 w-fit"
+            alt="notification-filled">
+    </div>
+
+
+
+    <!-- sliding background -->
+    <div id="backgrounds" class="relative w-full h-screen bg-primaryGreen overflow-hidden">
+        <img id="backgroundImage" class="w-full h-full object-cover object-center"
+            src="../assets/images/backgrounds/image1.png" alt="background image">
+
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10 flex justify-center items-center">
+            <div class="text-center flex">
+                <h1 class="text-4xl font-montserrat font-semibold">#Jaga</h1>
+                <div class="text-transition text-4xl font-montserrat font-semibold">
+                    <h1 class="text-primaryGreen">Hutan</h1>
+                    <h1 class="text-red-600">Bumi</h1>
+                    <h1 class="text-[#297DCF]">Udara</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-10 flex gap-x-4">
+        <a href="./donasi-sampah.html">
+            <button
+                class="bg-secondaryBlue hover:bg-secondaryBlue font-montserrat font-extrabold text-white text-sm py-4 px-4 rounded-full whitespace-nowrap">Donasi
+                sampah</button>
+        </a>
+    </div>
+    </div>
+
+
+    <!-- carousel  1-->
+    <div id="cards" class="h-max mt-2 flex overflow-x-scroll scrollbar-hide py-4">
+        <div class="w-[152px] h-[152px] mx-2 flex-shrink-0 relative">
+            <div class="absolute inset-0 pointer-events-none z-10 flex flex-col justify-end">
+                <div class="bg-black bg-opacity-50 p-2 rounded-b-lg mx-[2px] mb-[2px]">
+                    <h3
+                        class="text-xs font-montserrat font-semibold whitespace-nowrap overflow-hidden text-ellipsis text-white">
+                        Manfaat Pohon Mangrove
+                    </h3>
+                    <p class="text-[10px] font-montserrat line-clamp-2 text-white">
+                        Pohon mangrove memiliki peran yang sangat penting
+                    </p>
+                </div>
+            </div>
+            <img src="../assets/images/cards/image1.jpeg"
+                class="h-full w-full rounded-lg border-2 border-primaryGreen object-cover" alt="">
+        </div>
+        <div class="w-[152px] h-[152px] mx-2 flex-shrink-0 relative">
+            <div class="absolute inset-0 pointer-events-none z-10 flex flex-col justify-end">
+                <div class="bg-black bg-opacity-50 p-2 rounded-b-lg mx-[2px] mb-[2px]">
+                    <h3
+                        class="text-xs font-montserrat font-semibold whitespace-nowrap overflow-hidden text-ellipsis text-white">
+                        Jaga Bumi Kita
+                    </h3>
+                    <p class="text-[10px] font-montserrat line-clamp-2 text-white">
+                        Bumi kita, rumah bagi segala kehidupan, kini m......
+                    </p>
+                </div>
+            </div>
+            <img src="../assets/images/cards/image2.jpeg"
+                class="h-full w-full rounded-lg border-2 border-primaryGreen object-cover" alt="">
+        </div>
+        <div class="w-[152px] h-[152px] mx-2 flex-shrink-0 relative">
+            <div class="absolute inset-0 pointer-events-none z-10 flex flex-col justify-end">
+                <div class="bg-black bg-opacity-50 p-2 rounded-b-lg mx-[2px] mb-[2px]">
+                    <h3
+                        class="text-xs font-montserrat font-semibold whitespace-nowrap overflow-hidden text-ellipsis text-white">
+                        Pohon Trembesi
+                    </h3>
+                    <p class="text-[10px] font-montserrat line-clamp-2 text-white">
+                        Rain tree dalam bahasa Inggris, adalah jenis pohon..
+                    </p>
+                </div>
+            </div>
+            <img src="../assets/images/cards/image3.png"
+                class="h-full w-full rounded-lg border-2 border-primaryGreen object-cover" alt="">
+        </div>
+        <div class="w-[152px] h-[152px] mx-2 flex-shrink-0 relative">
+            <div class="absolute inset-0 pointer-events-none z-10 flex flex-col justify-end">
+                <div class="bg-black bg-opacity-50 p-2 rounded-b-lg mx-[2px] mb-[2px]">
+                    <h3
+                        class="text-xs font-montserrat font-semibold whitespace-nowrap overflow-hidden text-ellipsis text-white">
+                        Sustainable Living
+                    </h3>
+                    <p class="text-[10px] font-montserrat line-clamp-2 text-white">
+                        Hari Gerakan Sejuta Pohon seringkali lewat begitu sa....
+                    </p>
+                </div>
+            </div>
+            <img src="../assets/images/cards/image4.png"
+                class="h-full w-full rounded-lg border-2 border-primaryGreen object-cover" alt="">
+        </div>
+    </div>
+
+
+
+    <!-- tabel bergabung -->
+    <div class="border rounded-lg shadow-md text-center mx-4 my-4 border-black">
+        <div class="bg-primaryGreen py-2 rounded-t-lg">
+            <p class="text-black font-montserrat text-center font-bold text-sm">
+                Bergabunglah dengan <span class="text-[#056C05]">Sahabat Bumi</span> <br /> untuk Masa Depan yang Lebih
+                Sehat!
+            </p>
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-y-4 mt-6 mx-10 mb-4 font-montserrat">
+            <div>
+                <p class="text-4xl font-bold">265</p>
+                <p class="text-[11px] text-black font-semibold">Pohon Terkumpul</p>
+            </div>
+            <div>
+                <p class="text-4xl font-bold">
+                    1.075<span class="text-[11px] inline-block leading-tight ml-0">Kg</span>
+                </p>
+                <p class="text-[11px] text-black font-semibold">Sampah Terkumpul</p>
+            </div>
+            <div>
+                <p class="text-4xl font-bold">27</p>
+                <p class="text-[11px] text-black font-semibold">Sahabat Bumi</p>
+            </div>
+            <div>
+                <p class="text-4xl font-bold">2jt+</p>
+                <p class="text-[11px] text-black font-semibold">Donasi</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- peta persebaran -->
+    <div class="h-fit mt-4">
+        <div class="text-black font-montserrat text-center font-bold text-[13px] py-2 rounded-t-lg">
+            Persebaran Wilayah yang Sudah Berkontribusi
+        </div>
+
+        <div class="h-[200px] mx-4 overflow-auto">
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16328182.696144234!2d107.22117646647732!3d-2.3813555440085796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sid!2sid!4v1733228094951!5m2!1sid!2sid"
+                width="100%" height="100%" class="border-none rounded-lg" allowfullscreen loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+
+    <!-- carousel kegiatan -->
+    <div class="h-fit mt-4">
+        <div class="text-black font-montserrat text-center font-bold text-sm rounded-t-lg">
+            Ikuti kegiatan kami
+        </div>
+
+        <div id="cards-kegiatan" class="h-max flex overflow-x-scroll scrollbar-hide py-4 font-montserrat">
+            <div class="w-[154px] h-[200px] ml-4 mr-2 flex-shrink-0 bg-white rounded-lg shadow-md">
+                <img src="../assets/images/cards-kegiatan/image1.png"
+                    class="h-32 w-full rounded-t-lg object-cover object-top" alt="">
+                <div class="p-2">
+                    <h3 class="text-[11px] font-bold text-black">Tanam Seribu Pohon</h3>
+                    <div class="bg-gray-300 h-1 rounded-full">
+                        <div class="bg-yellow-400 h-full rounded-full" style="width: 33%;"></div>
+                    </div>
+                    <p class="mt-1 text-[10px] text-black font-medium">401 Pohon </br> Terkumpul</p>
+                </div>
+            </div>
+
+            <div class="w-[154px] h-[200px] mx-2 flex-shrink-0 bg-white rounded-lg shadow-md">
+                <img src="../assets/images/cards-kegiatan/image2.png"
+                    class="h-32 w-full rounded-t-lg object-cover object-top" alt="">
+                <div class="p-2">
+                    <h3 class="text-[11px] font-bold text-black">Tanam Pohon Bersama</h3>
+                    <div class="bg-gray-300 h-1 rounded-full">
+                        <div class="bg-yellow-400 h-full rounded-full" style="width: 77%;"></div>
+                    </div>
+                    <p class="mt-1 text-[10px] text-black font-medium">10 Pohon </br> Terkumpul</p>
+                </div>
+            </div>
+
+            <div class="w-[154px] h-[200px] mx-2 flex-shrink-0 bg-white rounded-lg shadow-md">
+                <img src="../assets/images/cards-kegiatan/image3.png"
+                    class="h-32 w-full rounded-t-lg object-cover object-top" alt="">
+                <div class="p-2">
+                    <h3 class="text-[11px] font-bold text-black">Tanam Pohon di Pantai</h3>
+                    <div class="bg-gray-300 h-1 rounded-full">
+                        <div class="bg-yellow-400 h-full rounded-full" style="width: 52%;"></div>
+                    </div>
+                    <p class="mt-1 text-[10px] text-black font-medium">54 Pohon </br> Terkumpul</p>
+                </div>
+            </div>
+
+            <div class="w-[154px] h-[200px] mx-2 flex-shrink-0 bg-white rounded-lg shadow-md">
+                <img src="../assets/images/cards-kegiatan/image4.png"
+                    class="h-32 w-full rounded-t-lg object-cover object-top" alt="">
+                <div class="p-2">
+                    <h3 class="text-[11px] font-bold text-black">Selamatkan Hutan</h3>
+                    <div class="bg-gray-300 h-1 rounded-full">
+                        <div class="bg-yellow-400 h-full rounded-full" style="width: 33%;"></div>
+                    </div>
+                    <p class="mt-1 text-[10px] text-black font-medium">31 Pohon </br> Terkumpul</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- carousel review -->
+    <div class="h-fit mt-4">
+        <div class="text-black font-montserrat text-center font-bold text-sm rounded-t-lg">
+            Review <span class="text-darkGreen">Sahabat Bumi</span>
+        </div>
+
+        <div id="cards-review" class="h-max flex overflow-x-scroll scrollbar-hide py-4">
+            <div class="w-[150px] h-fit mx-2 flex-shrink-0 relative shadow-lg">
+                <div class="absolute w-16 h-16 rounded-full bg-cover bg-center left-1/2 transform -translate-x-1/2 -top-5"
+                    style="background-image: url('../assets/images/profiles/hermione.png'); top: 5rem;">
+                </div>
+                <div class="bg-[#FFF9EA] h-28 rounded-t-lg text-center flex justify-center">
+                    <p class="text-[10px] font-montserrat mx-4 font-medium text-black mt-4">
+                        Sehat selalu bumi kita, semoga bisa menjadi kebaikan untuk kita semua.
+                    </p>
+                </div>
+                <div class="bg-[#FFB300] h-14 rounded-b-lg text-center flex items-end pb-2 justify-center">
+                    <p class="font-montserrat font-semibold text-[10px]">Hermione Granger</p>
+                </div>
+            </div>
+
+            <div class="w-[150px] h-fit mx-2 flex-shrink-0 relative shadow-lg">
+                <div class="absolute w-16 h-16 rounded-full bg-cover bg-center left-1/2 transform -translate-x-1/2"
+                    style="background-image: url('../assets/images/profiles/potter.png'); top: 5rem;"></div>
+                <div class="bg-[#FFF9EA] h-28 rounded-t-lg text-center flex justify-center">
+                    <p class="text-[10px] font-montserrat mx-4 font-medium text-black mt-4">
+                        Semoga pohonnya berguna untuk kita semua
+                    </p>
+                </div>
+                <div class="bg-[#FFB300] h-14 rounded-b-lg text-center flex items-end pb-2 justify-center">
+                    <p class="font-montserrat font-semibold text-[10px]">Harry Potter</p>
+                </div>
+            </div>
+
+            <div class="w-[150px] h-fit mx-2 flex-shrink-0 relative shadow-lg">
+                <div class="absolute w-16 h-16 rounded-full bg-cover bg-center left-1/2 transform -translate-x-1/2"
+                    style="background-image: url('../assets/images/profiles/ron.png'); top: 5rem;"></div>
+                <div class="bg-[#FFF9EA] h-28 rounded-t-lg text-center flex justify-center">
+                    <p class="text-[10px] font-montserrat mx-4 font-medium text-black mt-4">
+                        Hijaukan bumi.
+                    </p>
+                </div>
+                <div class="bg-[#FFB300] h-14 rounded-b-lg text-center flex items-end pb-2 justify-center">
+                    <p class="font-montserrat font-semibold text-[10px]">Ron Weasley</p>
+                </div>
+            </div>
+
+            <div class="w-[150px] h-fit mx-2 flex-shrink-0 relative shadow-lg">
+                <div class="absolute w-16 h-16 rounded-full bg-cover bg-center left-1/2 transform -translate-x-1/2"
+                    style="background-image: url('../assets/images/profiles/anonym.png'); top: 5rem;"></div>
+                <div class="bg-[#FFF9EA] h-28 rounded-t-lg text-center flex justify-center">
+                    <p class="text-[10px] font-montserrat mx-4 font-medium text-black mt-4">
+                        Bismillah Indonesia lebih maju
+                    </p>
+                </div>
+                <div class="bg-[#FFB300] h-14 rounded-b-lg text-center flex items-end pb-2 justify-center">
+                    <p class="font-montserrat font-semibold text-[10px]">Anonymous</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- bottom nav untuk user login -->
+    <div id="bottom-nav"
+        class="fixed bottom-0 w-full max-w-[480px] md:max-w-[400px] mx-auto bg-white h-[62px] shadow-nav">
+        <div class="flex justify-evenly py-2 mx-4">
+
+            <a href="#">
+                <div class="nav-item font-bold flex flex-col text-center">
+                    <img src="../assets/images/icon/home-green.svg" data-icon="home"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span
+                        class="nav-text text-white bg-navGreen text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Beranda</span>
+                </div>
+            </a>
+
+            <a href="./bibit-pohon.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/pohon.svg" data-icon="pohon"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Pohon</span>
+                </div>
+            </a>
+
+            <a href="./riwayat.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/history.svg" data-icon="history"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Riwayat</span>
+                </div>
+            </a>
+
+            <a href="./profile.html">
+                <div class="nav-item flex flex-col text-center">
+                    <img src="../assets/images/icon/profile.svg" data-icon="profile"
+                        class="nav-icon h-5 w-fit self-center object-cover" alt="">
+                    <span class="nav-text text-white text-[10px] px-2 mt-0.5 py-0.5 rounded-full">Profil</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        // mengubah gambar di sliding background 
+
+        const images = [
+            '../assets/images/backgrounds/image1.png',
+            '../assets/images/backgrounds/image2.jpeg',
+            '../assets/images/backgrounds/image3.jpeg',
+            '../assets/images/backgrounds/image4.jpeg'
+        ];
+
+        let currentImageIndex = 0;
+
+        function changeImage() {
+            const backgroundImage = document.getElementById('backgroundImage');
+
+            backgroundImage.style.opacity = 0;
+
+            backgroundImage.src = images[currentImageIndex];
+
+            backgroundImage.style.opacity = 1;
+
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        setInterval(changeImage, 3000);
+
+        changeImage();
+
+
+
+        // animasi text
+        const words = document.querySelectorAll('.text-transition h1');
+        let currentIndex = 0;
+
+        function animateWords() {
+            const currentWord = words[currentIndex];
+            const nextIndex = (currentIndex + 1) % words.length;
+            const nextWord = words[nextIndex];
+
+            currentWord.classList.remove('slide-up');
+            currentWord.classList.add('slide-down');
+
+            nextWord.classList.remove('slide-down');
+            nextWord.classList.add('slide-up');
+
+            currentIndex = nextIndex;
+        }
+
+        words[currentIndex].classList.add('slide-up');
+
+        setInterval(animateWords, 2600);
+
+        //mengatur tombol login dan bottom nav tergantung status login user
+        if (localStorage.getItem('isLoggedIn') === 'false') {
+            document.getElementById('bottom-nav').style.display = 'none';
+            document.getElementById('login-button').style.display = 'block';
+            document.getElementById('notif').style.display = 'none';
+        } else {
+            document.getElementById('bottom-nav').style.display = 'block';
+            document.getElementById('login-button').style.display = 'none';
+            document.getElementById('notif').style.display = 'block';
+        }
+
+
+
+    </script>
+</body>
+
+<!-- footer -->
+<footer id="footer"
+    class="my-0 -mt-10 h-fit max-w-[480px] md:max-w-[400px] mb-[62px] mx-auto bg-gradient-to-t from-[#C0E84E] via-[#C0E84E69] to-transparent">
+    <div class="mx-12 h-60">
+        <div class="flex justify-between mt-28">
+            <div class="flex items-center">
+                <img src="../assets/main-logo.svg" class="h-14 w-14 object-cover" alt="">
+                <p class="text-[10px] font-montserrat font-bold text-black">
+                    Leaf <br /> Indonesia
+                </p>
+            </div>
+
+            <div class="flex flex-col items-end justify-center">
+                <p class="text-[10px] font-montserrat font-bold text-black">
+                    Kontak
+                </p>
+                <p class="text-[10px] font-montserrat font-semibold text-black">
+                    leaf@indonesia.com
+                </p>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <p class="text-[10px] font-montserrat font-semibold text-black text-justify mr-14 mt-8">
+                Leaf Indonesia adalah platform untuk menukar sampah dengan bibit pohon, mendukung keberlanjutan dan
+                penghijauan.
+            </p>
+
+            <div class="flex flex-col">
+                <div class="flex justify-end">
+                    <img src="../assets/images/logo/logos_facebook.png" class="h-4 w-fit object-cover" alt="">
+                    <img src="../assets/images/logo/logos_youtube-icon.png" class="h-4 w-fit object-cover ml-2" alt="">
+                    <img src="../assets/images/logo/logos_tiktok-icon.png" class="h-4 w-fit object-cover ml-2" alt="">
+                    <img src="../assets/images/logo/skill-icons_instagram.png" class="h-4 w-fit object-cover ml-2"
+                        alt="">
+                </div>
+                <p class="text-[10px] font-montserrat font-semibold text-black text-right mt-4"> Jl. Ring Road Utara,
+                    Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, DIY
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+</html>
